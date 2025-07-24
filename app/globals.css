@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    /* --primary: 213 100% 42%; */
+    --primary: 221 83% 50%;  /* bright blue */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 213 100% 42%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 213 100% 42%;
+    --radius: 0.75rem;
+    /* --success: 88 50% 53%; */
+    --success: 150 75% 45%;  /* light green */
+    --success-foreground: 0 0% 98%;
+  }
+
+  .dark {
+    --background: 213 100% 15%;
+    --foreground: 0 0% 98%;
+    --card: 213 100% 15%;
+    --card-foreground: 0 0% 98%;
+    --popover: 213 100% 15%;
+    --popover-foreground: 0 0% 98%;
+    /* --primary: 0 0% 98%;
+    --primary-foreground: 213 100% 15%; */
+    --secondary: 213 100% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 213 100% 20%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 213 100% 20%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 213 100% 20%;
+    --input: 213 100% 20%;
+    --ring: 0 0% 83.1%;
+    /* --success: 88 50% 53%;
+    --success-foreground: 0 0% 98%; */
+    --primary: 215 100% 65%;   /* Bright blue */
+  --success: 145 80% 55%;    /* Light green */
+  --primary-foreground: 0 0% 98%;
+  --success-foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transformation-themed Bubble Effects */
+.bubble-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.bubble-transition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, hsl(var(--primary) / 0.1), hsl(var(--success) / 0.05));
+  animation: bubble-float 8s infinite ease-in-out;
+  /* opacity: 0.6; */
+  opacity: 1;
+}
+
+.dark .bubble {
+  background: linear-gradient(45deg, hsl(var(--primary) / 0.2), hsl(var(--success) / 0.1));
+}
+
+.butterfly-bubble {
+  background: linear-gradient(45deg, hsl(var(--success) / 0.15), hsl(var(--primary) / 0.1));
+  border-radius: 50% 10% 50% 10%;
+  animation: butterfly-float 12s infinite ease-in-out;
+}
+
+.bubble:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.bubble:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.bubble:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  left: 70%;
+  animation-delay: 4s;
+  animation-duration: 7s;
+}
+
+.bubble:nth-child(4) {
+  width: 100px;
+  height: 100px;
+  left: 80%;
+  animation-delay: 1s;
+  animation-duration: 9s;
+}
+
+.bubble:nth-child(5) {
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  animation-delay: 3s;
+  animation-duration: 5s;
+}
+
+@keyframes bubble-float {
+  0% {
+    transform: translateY(100vh) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    /* opacity: 0.6; */
+    opacity: 1;
+  }
+  90% {
+    /* opacity: 0.6; */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes butterfly-float {
+  0% {
+    transform: translateY(100vh) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(50vh) scale(1) rotate(180deg);
+    /* opacity: 0.6; */
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.8) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Transformation liquid morphing effect */
+.liquid-shape {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, hsl(var(--primary) / 0.03), hsl(var(--success) / 0.02));
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: liquid-morph 15s ease-in-out infinite;
+}
+
+.dark .liquid-shape {
+  background: linear-gradient(45deg, hsl(var(--primary) / 0.05), hsl(var(--success) / 0.03));
+}
+
+@keyframes liquid-morph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(50px, -30px) rotate(90deg);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 60% 40% 60% 40%;
+    transform: translate(-20px, 20px) rotate(180deg);
+  }
+  75% {
+    border-radius: 60% 40% 60% 40% / 30% 60% 40% 70%;
+    transform: translate(-30px, -40px) rotate(270deg);
+  }
+}
+
+/* Coaching-specific styles */
+.coaching-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--success)) 100%);
+}
+/* globals.css or in your Tailwind config */
+/* .coaching-gradient {
+  @apply bg-gradient-to-r from-[#0166d2] to-[#0254ae] hover:from-[#2b8eff] hover:to-[#1e6bd6] transition-all;
+}
+*/
+/* .dark .coaching-gradient {
+  @apply from-[#4eaaff] to-[#257bd6] hover:from-[#6cc3ff] hover:to-[#3d96f0] shadow-lg shadow-blue-500/30;
+}  */
+
+.transformation-card {
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%);
+  border: 1px solid hsl(var(--border) / 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transformation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px hsl(var(--primary) / 0.1), 0 10px 10px -5px hsl(var(--primary) / 0.04);
+}
+
+.section-enter {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
